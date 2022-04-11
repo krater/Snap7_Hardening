@@ -1244,7 +1244,7 @@ void TS7Worker::SZLSystemState()
 {
     SZL.Answer.Header.DataLen=SwapWord(sizeof(SZLSysState));
     SZL.ResParams->Err =0x0000;
-    memcpy(SZL.ResData,&SZLNotAvail,sizeof(SZLSysState));
+    memcpy(SZL.ResData,&SZLSysState,sizeof(SZLSysState));
     isoSendBuffer(&SZL.Answer,28);
 	SZL.SZLDone=true;
 
