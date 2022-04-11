@@ -100,6 +100,7 @@ void TSnapThread::ThreadCreate()
     pthread_attr_init(&a);
     pthread_attr_setdetachstate(&a, PTHREAD_CREATE_DETACHED);
     pthread_create(&th, &a, &ThreadProc, this);
+    pthread_attr_destroy(&a);
 #endif  
 #if defined(OS_OSX)
     pthread_create(&th, 0, &ThreadProc, this);
