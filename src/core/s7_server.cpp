@@ -139,14 +139,17 @@ void TS7Worker::FillTime(PS7Time PTime)
     time(&Now);
     struct tm *DT = localtime (&Now);
 
-    PTime->bcd_year=BCD(DT->tm_year-100);
-    PTime->bcd_mon =BCD(DT->tm_mon+1);
-    PTime->bcd_day =BCD(DT->tm_mday);
-    PTime->bcd_hour=BCD(DT->tm_hour);
-    PTime->bcd_min =BCD(DT->tm_min);
-    PTime->bcd_sec =BCD(DT->tm_sec);
-    PTime->bcd_himsec=0;
-    PTime->bcd_dow =BCD(DT->tm_wday);
+    if(DT != NULL)
+    {
+        PTime->bcd_year=BCD(DT->tm_year-100);
+        PTime->bcd_mon =BCD(DT->tm_mon+1);
+        PTime->bcd_day =BCD(DT->tm_mday);
+        PTime->bcd_hour=BCD(DT->tm_hour);
+        PTime->bcd_min =BCD(DT->tm_min);
+        PTime->bcd_sec =BCD(DT->tm_sec);
+        PTime->bcd_himsec=0;
+        PTime->bcd_dow =BCD(DT->tm_wday);
+    }
 }
 //------------------------------------------------------------------------------
 void TS7Worker::DoEvent(longword Code, word RetCode, word Param1, word Param2,
