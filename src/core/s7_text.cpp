@@ -480,7 +480,10 @@ char* PDUText(TSrvEvent &Event, char* Result)
 				case grProgrammer:
 					strcpy(S, "Function group programmer not yet implemented");
 					break;
-			}
+                default:
+                    strcpy(S, "Unknown evrNotImplemented Param1");
+                    break;
+            }
 			break;
 		default:
 			strcpy(S, "Unknown Return code (");
