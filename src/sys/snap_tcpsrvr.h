@@ -167,6 +167,8 @@ private:
         void LockList();
         void UnlockList();
         int FirstFree();
+        TCustomMsgServer(const TCustomMsgServer&);
+        TCustomMsgServer& operator=(TCustomMsgServer&);
 protected:
         bool Destroying;
         // Critical section to lock Event activities
