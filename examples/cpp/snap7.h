@@ -758,6 +758,8 @@ class TS7Client
 {
 private:
     S7Object Client;
+    TS7Client(const TS7Client&);
+    TS7Client& operator=(TS7Client&);
 public:
 	TS7Client();
 	~TS7Client();
@@ -863,6 +865,8 @@ class TS7Server
 {
 private:
     S7Object Server;
+    TS7Server(const TS7Server&);
+    TS7Server& operator=(TS7Server&);
 public:
     TS7Server();
     ~TS7Server();
@@ -902,6 +906,8 @@ class TS7Partner
 {
 private:
 	S7Object Partner; // Partner Handle
+    TS7Partner(const TS7Partner&);
+    TS7Partner& operator=(TS7Partner&);
 public:
 	TS7Partner(bool Active);
 	~TS7Partner();

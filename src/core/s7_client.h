@@ -55,6 +55,10 @@ private:
     void CloseThread();
     void OpenThread();
     void StartAsyncJob();
+
+    TSnap7Client(const TSnap7Client&);
+    TSnap7Client& operator=(TSnap7Client&);
+
 protected:
     PSnapEvent EvtJob;
     PSnapEvent EvtComplete;

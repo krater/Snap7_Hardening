@@ -220,6 +220,8 @@ private:
 	void DisposeAll();
     int FindFirstFreeDB();
     int IndexOfDB(word DBNumber);
+    TSnap7Server(const TSnap7Server&);
+    TSnap7Server& operator=(TSnap7Server&);
 protected:
     int DBCount;
     int DBLimit;

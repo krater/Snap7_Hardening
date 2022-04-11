@@ -85,6 +85,9 @@ private:
     void Unlock();
     int CreateServer(longword BindAddress, PConnectionServer &Server);
     void AddServer(PConnectionServer Server);
+
+    TServersManager(const TServersManager&);
+    TServersManager& operator=(TServersManager&);
 public:
     int ServersCount;
     TServersManager();
@@ -92,7 +95,6 @@ public:
 
     int GetServer(longword BindAddress, PConnectionServer &Server);
     void RemovePartner(PConnectionServer Server, PSnap7Partner Partner);
-
 };
 typedef TServersManager *PServersManager;
 
@@ -134,6 +136,9 @@ private:
     void Lock();
     // Unlocks the Partner list
     void Unlock();
+
+    TConnectionServer(const TConnectionServer&);
+    TConnectionServer& operator=(TConnectionServer&);
 protected:
 	// Workers list
 	PSnap7Partner Partners[MaxPartners];
@@ -230,7 +235,9 @@ private:
     bool BlockSend();
     bool PickData();
     bool BlockRecv();
-    bool ConnectionConfirm();
+    bool ConnectionConfirm();  
+    TSnap7Partner(const TSnap7Partner&);
+    TSnap7Partner& operator=(TSnap7Partner&);
 protected:
     bool Stopping;
     bool Execute();

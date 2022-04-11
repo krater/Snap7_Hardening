@@ -245,6 +245,8 @@ private:
         void GetRemote();
         void SetSin(sockaddr_in &sin, char *Address, u_short Port);
         void GetSin(sockaddr_in sin, char *Address, u_short &Port);
+        TMsgSocket(const TMsgSocket&);
+        TMsgSocket& operator=(TMsgSocket&);
 protected:
         socket_t FSocket;
         sockaddr_in LocalSin;

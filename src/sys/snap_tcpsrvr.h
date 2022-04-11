@@ -93,6 +93,8 @@ private:
         int   FCapacity; // Queue capacity
         pbyte Buffer;
         int   FBlockSize;
+        TMsgEventQueue(const TMsgEventQueue&);
+        TMsgEventQueue& operator=(TMsgEventQueue&);
 public:
         TMsgEventQueue(const int Capacity, const int BlockSize);
         ~TMsgEventQueue();
