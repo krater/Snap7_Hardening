@@ -749,27 +749,31 @@ TextString CliErrorText(int Error)
 {
     char text[TextLen];
     Cli_ErrorText(Error, text, TextLen);
-    return TextString(text);
+    static TextString ret(text);
+    return ret;
 }
 //---------------------------------------------------------------------------
 TextString SrvErrorText(int Error)
 {
     char text[TextLen];
     Srv_ErrorText(Error, text, TextLen);
-    return TextString(text);
+    static TextString ret(text);
+    return ret;
 }
 //---------------------------------------------------------------------------
 TextString ParErrorText(int Error)
 {
     char text[TextLen];
     Par_ErrorText(Error, text, TextLen);
-    return TextString(text);
+    static TextString ret(text);
+    return ret;
 }
 //---------------------------------------------------------------------------
 TextString SrvEventText(TSrvEvent *Event)
 {
     char text[TextLen];
     Srv_EventText(Event, text, TextLen);
-    return TextString(text);
+    static TextString ret(text);
+    return ret;
 }
 
