@@ -510,7 +510,7 @@ bool TS7Worker::PerformFunctionRead()
     PDURemainder;
     TEv EV;
 
-	PDURemainder=FPDULength;
+    PDURemainder=FPDULength;
     // Stage 1 : Setup pointers and initial check
 	ReqParams=PReqFunReadParams(pbyte(PDUH_in)+sizeof(TS7ReqHeader));
     ResParams=PResFunReadParams(pbyte(&Answer)+ResHeaderSize23);        // Params after the header
@@ -526,7 +526,7 @@ bool TS7Worker::PerformFunctionRead()
 
     for (c = 0; c < ItemsCount; c++)
 	{
-		ResData[c]=PResFunReadItem(pbyte(ResParams)+Offset);
+        ResData[c]=(TResFunReadItem*)((uint8_t*)((ResParams)+Offset));
 		ItemSize=ReadArea(ResData[c],&ReqParams->Items[c],PDURemainder, EV);
 
         // S7 doesn't xfer odd byte amount

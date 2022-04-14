@@ -215,7 +215,7 @@ class TIsoTcpSocket : public TMsgSocket
 private:
 
 	TIsoControlPDU FControlPDU;
-        int IsoMaxFragments; // max fragments allowed for an ISO telegram
+    int IsoMaxFragments; // max fragments allowed for an ISO telegram
 	// Checks the PDU format
 	int CheckPDU(void *pPDU, u_char PduTypeExpected);
 	// Receives the next fragment

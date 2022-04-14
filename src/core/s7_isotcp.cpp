@@ -148,7 +148,12 @@ int TIsoTcpSocket::BuildControlPDU()
 //---------------------------------------------------------------------------
 int TIsoTcpSocket::PDUSize(void *pPDU)
 {
-	return PIsoHeaderInfo(pPDU)->TPKT.HI_Lenght*256+PIsoHeaderInfo( pPDU )->TPKT.LO_Lenght;
+    int size = PIsoHeaderInfo(pPDU)->TPKT.HI_Lenght*256+PIsoHeaderInfo( pPDU )->TPKT.LO_Lenght;
+
+    // PDUSize can't be smaller than header or bigger than header + payload. Fix value for security reasons
+    if(size < DataHeaderSize) return DataHeaderSize;
+    else if(size > IsoFrameSize ) return IsoFrameSize;
+    else return size;
 }
 //---------------------------------------------------------------------------
 void TIsoTcpSocket::IsoParsePDU(TIsoControlPDU pdu)
@@ -196,10 +201,8 @@ int TIsoTcpSocket::isoConnect()
 	Result =SckConnect();
 	if (Result==noError)
 	{
-		// Calcs the length
-		Length =PDUSize(ControlPDU);
 		// Send connection telegram
-		SendPacket(ControlPDU, Length);
+        SendPacket(ControlPDU, sizeof(TIsoControlPDU));
 		if (LastTcpError==0)
 		{
 			TmpControlPDU = pbyte(ControlPDU);
@@ -332,8 +335,9 @@ int TIsoTcpSocket::isoDisconnect(bool OnlyTCP)
 		Result =CheckPDU(&FControlPDU, pdu_type_DR);
 		if (Result!=0)
 			return Result;
-		// Sends Disconnect request
-		SendPacket(&FControlPDU, PDUSize(&FControlPDU));
+
+        // Sends Disconnect request
+        SendPacket(&FControlPDU, sizeof(FControlPDU));
 		if (LastTcpError!=0)
 		{
 			Result =SetIsoError(errIsoSendPacket);
