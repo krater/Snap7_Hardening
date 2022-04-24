@@ -339,7 +339,10 @@ char* ErrCliText(int Error, char * Result, int TextLen)
 		}
 	}
 	else
+    {
 		strncpy(Result, "OK\0", TextLen);
+        Result[TextLen - 1] = 0;
+    }
 	return Result;
 }
 //---------------------------------------------------------------------------
@@ -364,7 +367,10 @@ char* ErrSrvText(int Error, char* Result, int TextLen)
 		}
 	}
 	else
+    {
 		strncpy(Result, "OK\0", TextLen);
+        Result[TextLen - 1] = 0;
+    }
 	return Result;
 }
 //---------------------------------------------------------------------------
@@ -389,7 +395,10 @@ char* ErrParText(int Error, char* Result, int TextLen)
 		}
 	}
 	else
+    {
 		strncpy(Result, "OK\0", TextLen);
+        Result[TextLen - 1] = 0;
+    }
 	return Result;
 }
 //---------------------------------------------------------------------------
@@ -786,6 +795,7 @@ char* EvtSrvText(TSrvEvent &Event, char* Result, int TextLen)
         strcpy(S,TcpServerEventText(Event,C));
 
 	strncpy(Result, S, TextLen);
+    Result[TextLen-1] = 0;
 	return Result;
 }
 
