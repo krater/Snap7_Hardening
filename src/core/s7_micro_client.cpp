@@ -1167,7 +1167,7 @@ int TSnap7MicroClient::opUpload()
                 {
                     Done=ResParams->EoU==0;
                     Size=SwapWord(Answer->DataLen)-sizeof(TResFunUploadDataHeaderNext); // Size of this data slice
-                    if(Size > 0)
+                    if((Size > 0) && (Offset > 0))
                     {
                         Target=pbyte(&opData)+Offset;
                         memcpy(Target, Source, Size);
