@@ -420,7 +420,7 @@ void ReadSzl_0011_0000()
      int res=Client->ReadSZL(0x0011, 0x0000, SZL, &Size);
      if (Check(res,"Read SZL - ID : 0x0011, IDX 0x0000"))
      {
-        printf("  LENTHDR : %hu\n",SZL->Header.LENTHDR);
+        printf("  LENTHDR : %u\n",(unsigned int)SZL->Header.LENTHDR);
         printf("  N_DR    : %d\n",SZL->Header.N_DR);
         printf("Dump (%d bytes) :\n",Size);
         hexdump(&Buffer,Size);
