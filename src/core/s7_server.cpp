@@ -526,7 +526,10 @@ bool TS7Worker::PerformFunctionRead()
 
     for (c = 0; c < ItemsCount; c++)
 	{
-        ResData[c]=(TResFunReadItem*)((uint8_t*)((ResParams)+Offset));
+        if(Offset > sizeof(TS7Answer23::ResData))   // protection for Offset over buffer length
+            break;
+
+        ResData[c]=PResFunReadItem(pbyte(ResParams)+Offset);
 		ItemSize=ReadArea(ResData[c],&ReqParams->Items[c],PDURemainder, EV);
 
         // S7 doesn't xfer odd byte amount
