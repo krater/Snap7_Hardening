@@ -1167,9 +1167,16 @@ int TSnap7MicroClient::opUpload()
                 {
                     Done=ResParams->EoU==0;
                     Size=SwapWord(Answer->DataLen)-sizeof(TResFunUploadDataHeaderNext); // Size of this data slice
-                    Target=pbyte(&opData)+Offset;
-                    memcpy(Target, Source, Size);
-                    Offset+=Size;
+                    if(Size > 0)
+                    {
+                        Target=pbyte(&opData)+Offset;
+                        memcpy(Target, Source, Size);
+                        Offset+=Size;
+                    }
+                    else
+                    {
+                        Result=errCliInvalidDataSizeRecvd;
+                    }
                 }
                 else
                     Result=errCliUploadSequenceFailed;
