@@ -940,6 +940,8 @@ int TSnap7MicroClient::opDBGet()
     Job.pData=&BI;
     Result=opAgBlockInfo();
 
+    Job.pData = NULL;
+
     // 2 Pass : Read the whole (MC7Size bytes) DB.
     if (Result==0)
     {
@@ -978,6 +980,9 @@ int TSnap7MicroClient::opDBFill()
     Job.Area =Block_DB;
     Job.pData=&BI;
     Result   =opAgBlockInfo();
+
+    Job.pData = NULL;
+
     // Restore original op
     Job.Op   =s7opDBFill;
     // Fill internal buffer then write it
