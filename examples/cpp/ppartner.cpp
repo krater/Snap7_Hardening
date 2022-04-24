@@ -124,7 +124,7 @@ void hexdump(void *mem, unsigned int len)
 //------------------------------------------------------------------------------
 void S7API RecvCallback(void * usrPtr, int opResult, longword R_ID, void *pdata, int Size)
 {
-	printf("R_ID : %d\n",R_ID);
+    printf("R_ID : %u\n",R_ID);
 	printf("Size : %d\n",Size);
 	hexdump(pdata, Size);
 }

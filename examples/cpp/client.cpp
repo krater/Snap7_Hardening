@@ -271,7 +271,7 @@ void OrderCode()
      if (Check(res,"Catalog"))
      {
           printf("  Order Code : %s\n",Info.Code);
-          printf("  Version    : %d.%d.%d\n",Info.V1,Info.V2,Info.V3);
+          printf("  Version    : %u.%u.%u\n",Info.V1,Info.V2,Info.V3);
      };
 }
 //------------------------------------------------------------------------------
@@ -420,7 +420,7 @@ void ReadSzl_0011_0000()
      int res=Client->ReadSZL(0x0011, 0x0000, SZL, &Size);
      if (Check(res,"Read SZL - ID : 0x0011, IDX 0x0000"))
      {
-        printf("  LENTHDR : %d\n",SZL->Header.LENTHDR);
+        printf("  LENTHDR : %u\n",SZL->Header.LENTHDR);
         printf("  N_DR    : %d\n",SZL->Header.N_DR);
         printf("Dump (%d bytes) :\n",Size);
         hexdump(&Buffer,Size);
