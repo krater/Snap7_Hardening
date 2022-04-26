@@ -201,6 +201,14 @@ int TIsoTcpSocket::isoConnect()
 	Result =SckConnect();
 	if (Result==noError)
 	{
+        // Calcs the length
+        Length = PDUSize(ControlPDU);
+
+        if(Length > sizeof(TIsoControlPDU))
+        {
+            Length = sizeof(TIsoControlPDU);
+        }
+
 		// Send connection telegram
         SendPacket(ControlPDU, sizeof(TIsoControlPDU));
 		if (LastTcpError==0)
@@ -337,7 +345,13 @@ int TIsoTcpSocket::isoDisconnect(bool OnlyTCP)
 			return Result;
 
         // Sends Disconnect request
-        SendPacket(&FControlPDU, sizeof(FControlPDU));
+        u_int Length = PDUSize(&FControlPDU);
+        if(Length > sizeof(FControlPDU))
+        {
+            Length = sizeof(FControlPDU);
+        }
+
+        SendPacket(&FControlPDU, Length);
 		if (LastTcpError!=0)
 		{
 			Result =SetIsoError(errIsoSendPacket);
