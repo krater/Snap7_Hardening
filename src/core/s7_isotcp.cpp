@@ -210,7 +210,7 @@ int TIsoTcpSocket::isoConnect()
         }
 
 		// Send connection telegram
-        SendPacket(ControlPDU, sizeof(TIsoControlPDU));
+        SendPacket(ControlPDU, Length);
 		if (LastTcpError==0)
 		{
 			TmpControlPDU = pbyte(ControlPDU);
